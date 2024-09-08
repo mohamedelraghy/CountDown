@@ -1,5 +1,5 @@
-let startTime = new Date("2024-9-9");
-let timeinterval;
+let startTime = new Date();
+let timeInterval;
 
 function getTimeElapsed(startTime) {
   const total = Date.parse(new Date()) - Date.parse(startTime);
@@ -34,11 +34,11 @@ function initializeClock(id, startTime) {
   }
 
   updateClock();
-  timeinterval = setInterval(updateClock, 1000);
+  timeInterval = setInterval(updateClock, 1000);
 }
 
 function resetClock() {
-  clearInterval(timeinterval); // Stop the existing interval
+  clearInterval(timeInterval); // Stop the existing interval
   startTime = new Date(); // Reset the start time to the current time
   initializeClock("clockdiv", startTime); // Reinitialize the clock
 }
