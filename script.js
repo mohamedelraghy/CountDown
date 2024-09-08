@@ -1,42 +1,49 @@
-function getTimeRemaining(endtime){
-    const total = Date.parse(endtime) - Date.parse(new Date());
-    const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total /( 1000 * 60)) % 60);
-    const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
-    const days = Math.floor(total / (1000 * 60 * 60 * 24));
+let startTime = new Date("2024-9-9");
+let timeinterval;
 
-    return {
-        total,
-        days,
-        hours,
-        minutes,
-        seconds
-    };
+function getTimeElapsed(startTime) {
+  const total = Date.parse(new Date()) - Date.parse(startTime);
+  const seconds = Math.floor((total / 1000) % 60);
+  const minutes = Math.floor((total / (1000 * 60)) % 60);
+  const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+  const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+  return {
+    total,
+    days,
+    hours,
+    minutes,
+    seconds,
+  };
 }
 
-function initializeClock(id, endtime) {
-    const clock = document.getElementById(id);
-    const daysSpan = clock.querySelector('.days');
-    const hoursSpan = clock.querySelector('.hours');
-    const minutesSpan = clock.querySelector('.minutes');
-    const secondsSpan = clock.querySelector('.seconds');
+function initializeClock(id, startTime) {
+  const clock = document.getElementById(id);
+  const daysSpan = clock.querySelector(".days");
+  const hoursSpan = clock.querySelector(".hours");
+  const minutesSpan = clock.querySelector(".minutes");
+  const secondsSpan = clock.querySelector(".seconds");
 
-    function updateClock(){
-        const t = getTimeRemaining(endtime);
+  function updateClock() {
+    const t = getTimeElapsed(startTime);
 
-        daysSpan.innerHTML = t.days;
-        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ("0" + t.hours).slice(-2);
+    minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
+  }
 
-        if (t.total <= 0){
-            clearInterval(timeinterval);
-        }
-    }
-
-    updateClock();
-    const timeinterval = setInterval(updateClock, 1000);
+  updateClock();
+  timeinterval = setInterval(updateClock, 1000);
 }
 
-const deadline = new Date("2023-4-1");
-initializeClock('clockdiv', deadline);
+function resetClock() {
+  clearInterval(timeinterval); // Stop the existing interval
+  startTime = new Date(); // Reset the start time to the current time
+  initializeClock("clockdiv", startTime); // Reinitialize the clock
+}
+
+document.getElementById("resetButton").addEventListener("click", resetClock);
+
+// Initialize the clock for the first time
+initializeClock("clockdiv", startTime);

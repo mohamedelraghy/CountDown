@@ -1,18 +1,18 @@
-body{
-    text-align: center;
-    background: #00ECB9;
-    font-family: sans-serif;
-    font-weight: 100;
+body {
+  text-align: center;
+  background: #00ECB9;
+  font-family: sans-serif;
+  font-weight: 100;
 }
 
-h1{
-    color: #396;
-    font-weight: 100;
-    font-size: 40px;
-    margin: 40px 0px 20px;
+h1 {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
 }
 
-#clockdiv{
+#clockdiv {
   font-family: sans-serif;
   color: #fff;
   display: inline-block;
@@ -21,21 +21,38 @@ h1{
   font-size: 30px;
 }
 
-#clockdiv > div{
+#clockdiv > div {
   padding: 10px;
   border-radius: 3px;
   background: #00BF96;
   display: inline-block;
 }
 
-#clockdiv div > span{
+#clockdiv div > span {
   padding: 15px;
   border-radius: 3px;
   background: #00816A;
   display: inline-block;
 }
 
-.smalltext{
+.smalltext {
   padding-top: 5px;
   font-size: 16px;
+}
+
+#resetButton {
+  display: block;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #00BF96;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px auto 0; /* Added auto for centering and top margin */
+  transition: background-color 0.3s ease;
+}
+
+#resetButton:hover {
+  background-color: #00816A;
 }
