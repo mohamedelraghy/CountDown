@@ -1,4 +1,4 @@
-let startTime = new Date("2024-12-17");
+let startTime = new Date("2025-01-11");
 let timeInterval;
 
 function getTimeElapsed(startTime) {
